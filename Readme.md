@@ -10,6 +10,14 @@ An Arduino-based robot controlled over Serial commands, with real-time visual fe
 
 The bot is controlled by a webcam-based color-tracking controller running on a PC. A colored object is tracked in real time using OpenCV; depending on which on-screen zone (Up/Down/Left/Right/Middle) the object is in, a single-character command is sent over Serial to the Arduino. The Arduino then drives the motors accordingly and shows live directional feedback on its onboard LED Matrix.
 
+## What makes this different
+
+Color-tracking robots (webcam + OpenCV + Arduino) are a well-known concept. What sets this build apart is the **feedback system**:
+
+- **Onboard LED Matrix directional feedback** — hand-designed 8x12 pixel bitmap icons (up/down/left/right arrows + a stop symbol) rendered live on the Arduino UNO R4's built-in LED Matrix, so the bot visually confirms every command it receives
+- **Command-specific LED blink signaling** — each direction blinks the status LED a distinct number of times (1 for forward, 2 for backward, 3 for left, 4 for right), giving a second, independent feedback channel
+- **Discrete 5-zone tracking logic** — object position is mapped to five on-screen zones (Up/Down/Left/Right/Middle) rather than continuous coordinate-based PID following, keeping the control logic simple and predictable
+
 ## Features
 
 - Serial command control: `F` (forward), `B` (backward), `L` (left), `R` (right), `S` (stop)
